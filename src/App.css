@@ -1,7 +1,14 @@
+:root {
+  --text-light: #9ca3af;
+  --text-dark: #111827;
+}
 #root {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 .logo {
@@ -33,12 +40,15 @@
 }
 .sub-content {
   display: flex;
-  align-items: start;
+  align-items: stretch;
+  height: 100%;
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .card {

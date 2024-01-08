@@ -1,0 +1,7 @@
+.left-side-bar {
+  /* height: 90vh; */
+  height: 100vh;
+  padding: 0 10rem;
+  border-right: 1px solid black;
+  /* padding: 5rem; */
+}

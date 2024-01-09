@@ -7,7 +7,7 @@ nav {
   border-bottom: 1px solid var(--border-color);
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
 }
 
 .brand {
@@ -58,6 +58,7 @@ nav {
   justify-content: center;
   cursor: pointer;
   border: 1px solid var(--border-color);
+  transition: all 0.3s ease-in-out;
 }
 .brand > .navigation-container > .back-btn:hover,
 .brand > .navigation-container > .forward-btn:hover {

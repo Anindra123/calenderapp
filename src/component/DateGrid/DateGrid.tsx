@@ -24,7 +24,7 @@ export default function DateGrid({ today }: DateGridProps) {
             <div className="date-row-container">
                 {Object.keys(initial_dates)
                     .map((idx) => (
-                        <DateRow today={today} days={initial_dates[idx]} />
+                        <DateRow key={idx} today={today} days={initial_dates[idx]} />
                     ))}
             </div>
         </main>

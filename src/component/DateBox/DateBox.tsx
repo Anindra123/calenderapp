@@ -8,7 +8,9 @@ interface DateBoxProps {
 export default function DateBox({ day, today }: DateBoxProps) {
     const currentDate = new Date().getDate();
     const currentMonth = new Date().getMonth();
-    const isActive = day.date === currentDate && day.month === months[currentMonth]
+    const currentYear = new Date().getFullYear();
+    const isActive = day.date === currentDate &&
+        day.month === months[currentMonth] && day.year === currentYear
     const isTextMuted = day.month !== months[today.getMonth()]
     return (
         <div className="date-box">

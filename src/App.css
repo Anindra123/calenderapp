@@ -1,6 +1,7 @@
 :root {
   --text-light: #9ca3af;
   --text-dark: #111827;
+  --border-color: #d1d5db;
 }
 #root {
   max-width: 1920px;

@@ -1,5 +1,6 @@
 :root {
   --day-number-hover-color: #d1d5db;
+  --active-day-color: #3b82f6;
 }
 .date-box {
   background: #fff;
@@ -7,8 +8,8 @@
   flex-direction: column;
   justify-content: center;
   flex: 1 1 0%;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 .date-box:last-child {
   border-right: 0;
@@ -23,14 +24,41 @@
 .date-box > .day-number-container > .day-number {
   color: var(--text-dark);
   font-size: 1rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  font-size: 0.8rem;
   border-radius: 100%;
   text-align: center;
   background-color: #fff;
+  display: flex;
+}
+
+.date-box > .day-number-container > .day-number > .day-number-text-container {
+  display: flex;
+  background-color: #fff;
+  column-gap: 0.2rem;
+  border-radius: 100%;
+}
+
+.date-box
+  > .day-number-container
+  > .day-number
+  > .day-number-text-container:hover {
+  background-color: var(--day-number-hover-color);
 }
 
 .date-box > .day-number-container > .day-number:hover {
   background-color: var(--day-number-hover-color);
   cursor: pointer;
+}
+.date-box > .day-number-container > .day-number.active {
+  background-color: var(--active-day-color);
+  color: #fff;
+}
+
+.date-box > .day-number-container > .day-number.text-muted {
+  color: var(--text-light);
 }

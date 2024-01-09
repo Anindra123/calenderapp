@@ -9,7 +9,7 @@
 }
 .date-grid > .date-header > .day-title {
   flex: 1 1 0%;
-  border-right: 1px solid black;
+  border-right: 1px solid var(--border-color);
 }
 .date-grid > .date-header > .day-title:last-child {
   border-right: 0;

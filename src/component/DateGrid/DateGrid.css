@@ -1,6 +1,29 @@
 .date-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  flex: 1 1 0%;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.date-grid > .date-header {
+  display: flex;
+}
+.date-grid > .date-header > .day-title {
+  flex: 1 1 0%;
+  border-right: 1px solid var(--border-color);
+}
+.date-grid > .date-header > .day-title:last-child {
+  border-right: 0;
+}
+.date-grid > .date-header > .day-title > .day-title-text {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+.date-grid > .date-row-container {
+  flex-direction: column;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
 }

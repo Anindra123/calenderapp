@@ -1,14 +1,32 @@
-import { useState } from "react"
+// import {     useState } from "react"
 import "./DateGrid.css"
-import DateBox from "../DateBox/DateBox";
-export default function DateGrid() {
-    const [dates, setDates] = useState<Array<number>>(Array.from(Array(42).keys()));
-    console.log(dates);
+import DateRow from "../DataRow/DateRow";
+import GetDates from "../../helper/GetDates";
+import { weeks } from "../../constants/Constant";
+
+interface DateGridProps {
+    today: Date
+}
+
+export default function DateGrid({ today }: DateGridProps) {
+
+    const initial_dates = GetDates(today.getFullYear(), today.getMonth() + 1);
+
     return (
         <main className="date-grid">
-            {dates.map((d) => (
-                <DateBox dayNumber={d.toString()} dayName="" />
-            ))}
+            <div className="date-header">
+                {weeks.map((week) => (
+                    <div key={week} className="day-title">
+                        <p className="day-title-text">{week}</p>
+                    </div>
+                ))}
+            </div>
+            <div className="date-row-container">
+                {Object.keys(initial_dates)
+                    .map((idx) => (
+                        <DateRow today={today} days={initial_dates[idx]} />
+                    ))}
+            </div>
         </main>
     )
 }

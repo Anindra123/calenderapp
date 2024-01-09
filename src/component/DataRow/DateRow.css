@@ -1,0 +1,8 @@
+.date-row {
+  position: relative;
+  flex: 1 1 0%;
+}
+.date-box-container {
+  height: 100%;
+  display: flex;
+}

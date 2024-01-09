@@ -1,23 +1,64 @@
 :root {
-  --day-name-text-color: #d1d5db;
-  --day-number-text-color: #111827;
+  --day-number-hover-color: #d1d5db;
+  --active-day-color: #3b82f6;
 }
 .date-box {
   background: #fff;
-  display: flex;
+
   flex-direction: column;
-  align-items: center;
-  row-gap: 0.5rem;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  justify-content: center;
+  flex: 1 1 0%;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.date-box:last-child {
+  border-right: 0;
 }
 
-.date-box.day-name-container.day-name {
-  color: var(--day-name-text-color);
-  font-size: 0.5rem;
+.date-box > .day-number-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 
-.date-box.day-number-container.day-number {
-  color: var(--day-number-text-color);
-  font-size: 0.5rem;
+.date-box > .day-number-container > .day-number {
+  color: var(--text-dark);
+  font-size: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  font-size: 0.8rem;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+}
+
+.date-box > .day-number-container > .day-number > .day-number-text-container {
+  display: flex;
+  background-color: #fff;
+  column-gap: 0.2rem;
+  border-radius: 100%;
+}
+
+.date-box
+  > .day-number-container
+  > .day-number
+  > .day-number-text-container:hover {
+  background-color: var(--day-number-hover-color);
+}
+
+.date-box > .day-number-container > .day-number:hover {
+  background-color: var(--day-number-hover-color);
+  cursor: pointer;
+}
+.date-box > .day-number-container > .day-number.active {
+  background-color: var(--active-day-color);
+  color: #fff;
+}
+
+.date-box > .day-number-container > .day-number.text-muted {
+  color: var(--text-light);
 }

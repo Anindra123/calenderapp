@@ -1,6 +1,6 @@
 // import {     useState } from "react"
 import "./DateGrid.css"
-import DateRow from "../DataRow/DateRow";
+import DateRow from "../DateRow/DateRow";
 import GetDates from "../../helper/GetDates";
 import { weeks } from "../../constants/Constant";
 

@@ -1,16 +1,18 @@
 :root {
   --day-number-hover-color: #d1d5db;
   --active-day-color: #3b82f6;
+  --box-hover-color: #e5e7eb;
 }
 .date-box {
   background: #fff;
-
   flex-direction: column;
   justify-content: center;
   flex: 1 1 0%;
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
 }
+
 .date-box:last-child {
   border-right: 0;
 }

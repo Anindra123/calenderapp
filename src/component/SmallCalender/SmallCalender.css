@@ -1,0 +1,52 @@
+:root {
+  --day-number-hover-color: #d1d5db;
+  --active-day-color: #3b82f6;
+}
+
+.small-calender-row {
+  display: flex;
+  justify-content: space-between;
+}
+.small-calender-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small-calender-column > .small-calender-column-container {
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.small-calender-column > .small-calender-column-container:hover {
+  background-color: var(--day-number-hover-color);
+}
+
+.small-calender-column
+  > .small-calender-column-container
+  > .small-calender-column-text {
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.small-calender-column > .small-calender-column-container.active {
+  background-color: var(--active-day-color);
+}
+
+.small-calender-column
+  > .small-calender-column-container.active
+  > .small-calender-column-text {
+  color: #fff;
+}
+.small-calender-column
+  > .small-calender-column-container.muted
+  > .small-calender-column-text {
+  color: var(--text-light);
+}

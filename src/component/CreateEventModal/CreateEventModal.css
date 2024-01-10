@@ -1,0 +1,100 @@
+:root {
+  --input-background: #e5e7eb;
+  --input-focus: #1f2937;
+  --error-color: #ef4444;
+}
+.event-dialog {
+  padding: 2rem;
+  border-radius: 0.8rem;
+  top: 30%;
+  left: 30%;
+}
+.event-dialog:focus {
+  outline: 2px solid var(--input-focus);
+}
+
+.event-dialog-input-group > .input-container {
+  margin-top: 0.5rem;
+}
+
+.event-dialog-container {
+  width: 40rem;
+}
+.event-dialog-input {
+  padding: 0.8rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 0;
+
+  background-color: var(--input-background);
+  width: 100%;
+}
+.event-dialog-input:focus {
+  outline: 2px solid var(--input-focus);
+}
+
+.event-dialog-input-group {
+  margin-top: 0.8rem;
+}
+
+.event-dialog-date-group {
+  display: flex;
+  margin-top: 0.8rem;
+  column-gap: 5rem;
+}
+.event-dialog-start-date,
+.event-dialog-end-date {
+  flex: 1;
+}
+.event-dialog-start-date > .input-date-container {
+  margin-top: 0.5rem;
+}
+
+.event-dialog-end-date > .input-date-container {
+  margin-top: 0.5rem;
+}
+
+.event-dialog-date {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 0.8rem;
+  border: 0;
+  background-color: var(--input-background);
+}
+.event-dialog-date:focus {
+  outline: 2px solid var(--input-focus);
+}
+
+.event-dialog-footer {
+  display: flex;
+  margin-top: 2rem;
+  align-items: center;
+  justify-content: end;
+  column-gap: 1rem;
+}
+
+.event-dialog-confirm.dialog-btn {
+  background-color: var(--input-focus);
+  color: #fff;
+}
+.event-dialog-confirm.dialog-btn:hover {
+  color: #fff;
+  background-color: black;
+}
+.dialog-btn {
+  display: flex;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  outline: 2px solid var(--input-focus);
+  cursor: pointer;
+  font-weight: bold;
+}
+.dialog-btn:hover {
+  background-color: var(--input-background);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-weight: bold;
+  font-size: 1rem;
+}

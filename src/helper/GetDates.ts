@@ -8,7 +8,7 @@ export default function GetDates(year: number, monthIndex: number) {
     3: [],
     4: [],
     5: [],
-    6: [],
+    // 6: [],
   };
 
   //get the start date object
@@ -33,20 +33,20 @@ export default function GetDates(year: number, monthIndex: number) {
   //get the rest of days of that weeks by subtracting the index of saturday
   //with the index of end date
   const last_date_offset =
-    weeks.indexOf("SAT") - weeks.indexOf(weeks[last_date.getDay()]);
+    weeks.indexOf("SAT") - weeks.indexOf(weeks[last_date.getDay()]) + 1;
 
   //since i will be rendering total 42 grid box
   //get the rest of the days needed by getting the current total days
   //adding the offsets and subtracting it by 42
-  let end_day_offset =
-    42 -
-    (start_date_offset +
-      new Date(year, monthIndex - 1, 0).getDate() +
-      last_date_offset);
+  // let end_day_offset =
+  //   42 -
+  //   (start_date_offset +
+  //     new Date(year, monthIndex - 1, 0).getDate() +
+  //     last_date_offset);
 
   // to get the final ending offset we get the remaining offset from the
   // weeks that we got previously and add it to the final offset
-  end_day_offset += last_date_offset + 1;
+  // end_day_offset += last_date_offset + 1;
 
   //get the starting day and add or remove the offeset from it
   const starting_day = new Date(year, monthIndex - 1, 1);
@@ -58,7 +58,8 @@ export default function GetDates(year: number, monthIndex: number) {
     monthIndex - 1,
     new Date(year, monthIndex - 1, 0).getDate()
   );
-  ending_day.setDate(ending_day.getDate() + end_day_offset);
+  // ending_day.setDate(ending_day.getDate() + end_day_offset);
+  ending_day.setDate(ending_day.getDate() + last_date_offset);
 
   const date = starting_day;
 

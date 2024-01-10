@@ -13,7 +13,7 @@ nav {
 .brand {
   display: flex;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 0.5rem;
 }
 .nav-btn {
   background-color: var(--white);
@@ -25,8 +25,8 @@ nav {
   justify-content: center;
   row-gap: 0.3rem;
   cursor: pointer;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 .nav-btn-bar {
   height: 2px;
@@ -39,10 +39,11 @@ nav {
   display: flex;
   align-items: center;
   column-gap: 1rem;
+  margin-left: 2rem;
 }
 .brand > .navigation-container > .forward-btn {
   display: flex;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   align-items: center;
   justify-content: center;
@@ -52,7 +53,7 @@ nav {
 
 .brand > .navigation-container > .back-btn {
   display: flex;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   align-items: center;
   justify-content: center;
@@ -63,12 +64,13 @@ nav {
 .brand > .navigation-container > .back-btn:hover,
 .brand > .navigation-container > .forward-btn:hover {
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  background-color: var(--hover-color);
+  /* background-color: var(--hover-color); */
 }
 
 svg {
   width: 1rem;
   height: 1rem;
+  stroke-width: 0.2rem;
 }
 
 .nav-btn:hover {

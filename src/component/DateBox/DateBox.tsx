@@ -1,5 +1,4 @@
-
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { months } from "../../constants/Constant";
 import { DateInfo } from "../../types/DateTypes"
 import "./DateBox.css"
@@ -23,7 +22,7 @@ export default function DateBox({ day,
     const eventDialogRef = useRef<HTMLDialogElement | null>(null);
     const start_date: string = currentBoxDate.toISOString().split("T")[0];
 
-  
+
 
     function handleModalOpen() {
 

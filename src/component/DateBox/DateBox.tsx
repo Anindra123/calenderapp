@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { months } from "../../constants/Constant";
 import { DateInfo } from "../../types/DateTypes"
@@ -18,16 +19,13 @@ export default function DateBox({ day,
         day.month === months[currentMonth] && day.year === currentYear
     const isTextMuted = day.month !== months[today.getMonth()]
     const currentBoxDate = new Date(day.year, months.indexOf(day.month), day.date + 1);
+
     const eventDialogRef = useRef<HTMLDialogElement | null>(null);
     const start_date: string = currentBoxDate.toISOString().split("T")[0];
 
+  
+
     function handleModalOpen() {
-
-        // if (eventDialogRef.current) {
-        //     eventDialogRef.current.id = start_date;
-        // }
-
-        // setModalOpen(!openModal);
 
         eventDialogRef.current?.showModal();
     }
@@ -35,6 +33,7 @@ export default function DateBox({ day,
     return (
         <>
             <CreateEventModal eventModalRef={eventDialogRef} startDate={start_date} />
+
             <a className="date-box" onClick={handleModalOpen}>
                 <div className="day-number-container">
 

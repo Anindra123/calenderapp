@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { months } from "../../constants/Constant";
 import { DateInfo } from "../../types/DateTypes"
 import "./DateBox.css"

@@ -6,3 +6,6 @@
   height: 100%;
   display: flex;
 }
+.event-line-container {
+  position: relative;
+}

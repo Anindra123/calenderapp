@@ -1,8 +1,9 @@
 
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import './CreateEventModal.css'
 import { EventError } from '../../types/ErrorTypes'
 import { Event } from '../../types/EventType'
+import { EventContext } from '../../context/EventContext'
 
 interface EventModalProps {
     eventModalRef: React.RefObject<HTMLDialogElement>
@@ -22,29 +23,37 @@ export default function CreateEventModal({ eventModalRef
 
     const confirmBtnRef = useRef<HTMLAnchorElement>(null);
 
-    const [event, setEvent] = useState<Event>({ title: "", startDate: startDate, endDate: "" })
+    const [event, setEvent] = useState<Event>({ title: "", startDate: startDate, endDate: "", numerOfDays: 0 })
     const [eventErr, setEventErr] = useState<EventError>({ titleErr: "", startDateErr: "", endDateErr: "" })
+    const eventContext = useContext(EventContext);
+
+
+    function handleCloseModal() {
+        eventModalRef.current?.close();
+
+    }
+
 
     function handleSubmit() {
         let hasError = false;
-        const ev = { ...eventErr };
-        ev.titleErr = "";
-        ev.startDateErr = "";
-        ev.endDateErr = ""
-        setEventErr(ev);
+        const inputErr = { ...eventErr };
+        inputErr.titleErr = "";
+        inputErr.startDateErr = "";
+        inputErr.endDateErr = ""
+        setEventErr(inputErr);
 
         if (event.title.trim().length === 0) {
-            ev.titleErr = "Title cannot be empty";
+            inputErr.titleErr = "Title cannot be empty";
             hasError = true;
         }
 
 
         if (event.endDate.trim().length === 0) {
-            ev.endDateErr = "End date cannot be empty"
+            inputErr.endDateErr = "End date cannot be empty"
             hasError = true;
         }
         else if (new Date(event.endDate) < new Date(event.startDate)) {
-            ev.endDateErr = "End date must be greater than start date"
+            inputErr.endDateErr = "End date must be greater than start date"
 
             hasError = true;
         }
@@ -52,26 +61,41 @@ export default function CreateEventModal({ eventModalRef
 
 
         if (event.startDate.trim().length === 0) {
-            ev.startDateErr = "Start date cannot be empty";
+            inputErr.startDateErr = "Start date cannot be empty";
             hasError = true;
         }
         else if (new Date(event.startDate) > new Date(event.endDate)) {
-            ev.startDateErr = "Start date must be less than end date";
+            inputErr.startDateErr = "Start date must be less than end date";
             hasError = true;
         }
 
 
-        setEventErr(ev);
+        setEventErr(inputErr);
 
         if (!hasError) {
-            console.log(event);
+
+            const diff_in_ms = new Date(event.endDate).getTime() - new Date(event.startDate).getTime();
+            event.numerOfDays = Math.round(diff_in_ms / (1000 * 3600 * 24));
+            const curr_events = [...eventContext.events];
+
+            if (eventContext.events.length > 0) {
+
+                curr_events.push(event)
+                curr_events.sort((prevEvent, nextEvent) => {
+                    return (nextEvent.numerOfDays - prevEvent.numerOfDays)
+                })
+
+            }
+            else {
+                curr_events.push(event)
+
+            }
+
+
+            eventContext.setEvents(curr_events)
+            handleCloseModal();
         }
 
-    }
-
-    function handleCloseModal() {
-        eventModalRef.current?.close();
-        // setModalOpen(!openModal);
     }
 
 

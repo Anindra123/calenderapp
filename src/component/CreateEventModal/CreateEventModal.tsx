@@ -1,64 +1,89 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './CreateEventModal.css'
 import { EventError } from '../../types/ErrorTypes'
 import { Event } from '../../types/EventType'
 
 interface EventModalProps {
     eventModalRef: React.RefObject<HTMLDialogElement>
-    start_date: string,
+    // setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    // openModal: boolean;
+    startDate: string,
+
+
+
 }
 
-export default function CreateEventModal({ start_date, eventModalRef }: EventModalProps) {
-    const [eventErr, setEventErr] = useState<EventError>({ titleErr: "", endDateErr: "", startDateErr: "" })
-    const [event, setEvent] = useState<Event>({ title: "", startDate: start_date, endDate: "" })
+export default function CreateEventModal({ eventModalRef
+    , startDate
+
+}: EventModalProps) {
+
+
+    const confirmBtnRef = useRef<HTMLAnchorElement>(null);
+
+    const [event, setEvent] = useState<Event>({ title: "", startDate: startDate, endDate: "" })
+    const [eventErr, setEventErr] = useState<EventError>({ titleErr: "", startDateErr: "", endDateErr: "" })
+
     function handleSubmit() {
         let hasError = false;
-        setEventErr({ titleErr: "", endDateErr: "", startDateErr: "" })
-        console.log(event.title)
+        const ev = { ...eventErr };
+        ev.titleErr = "";
+        ev.startDateErr = "";
+        ev.endDateErr = ""
+        setEventErr(ev);
 
         if (event.title.trim().length === 0) {
-            setEventErr({ ...eventErr, titleErr: "Title cannot be empty" })
-            hasError = true;
-        }
-
-        if (event.startDate === "") {
-            setEventErr({ ...eventErr, startDateErr: "Start Date is required" })
-            hasError = true;
-        }
-        else if (new Date(event.startDate) > new Date(event.endDate)) {
-            setEventErr({ ...eventErr, startDateErr: "Start Date must be less than end date" })
+            ev.titleErr = "Title cannot be empty";
             hasError = true;
         }
 
 
-        if (event.endDate === "") {
-            setEventErr({ ...eventErr, endDateErr: "End Date is required" })
+        if (event.endDate.trim().length === 0) {
+            ev.endDateErr = "End date cannot be empty"
             hasError = true;
         }
         else if (new Date(event.endDate) < new Date(event.startDate)) {
-            setEventErr({ ...eventErr, startDateErr: "End Date must be greater than start date" })
+            ev.endDateErr = "End date must be greater than start date"
             hasError = true;
         }
-        console.log(eventErr)
-        if (!hasError) {
-            console.log(eventErr);
+
+
+        if (event.startDate.trim().length === 0) {
+            ev.startDateErr = "Start date cannot be empty";
+            hasError = true;
+        }
+        else if (new Date(event.startDate) > new Date(event.endDate)) {
+            ev.startDateErr = "Start date must be less than end date";
+            hasError = true;
         }
 
 
+        setEventErr(ev);
+
+        if (!hasError) {
+            console.log(event);
+        }
 
     }
 
-    useEffect(() => {
+    function handleCloseModal() {
+        eventModalRef.current?.close();
+        // setModalOpen(!openModal);
+    }
 
+
+    useEffect(() => {
         function handleClick(e: KeyboardEvent) {
-            if (e.key === "Enter") {
-                handleSubmit();
+            if (eventModalRef.current?.open && e.key === "Enter") {
+                confirmBtnRef.current?.click();
             }
         }
 
         document.body.addEventListener("keyup", handleClick);
 
-        return () => document.body.removeEventListener("keyup", handleClick);
+        return function () {
+            document.body.removeEventListener("keyup", handleClick);
+        }
     })
 
 
@@ -108,14 +133,14 @@ export default function CreateEventModal({ start_date, eventModalRef }: EventMod
                     </div>
                 </div>
                 <div className="event-dialog-footer">
-                    <a className="event-dialog-confirm dialog-btn" onClick={handleSubmit}>
+                    <a className="event-dialog-confirm dialog-btn" ref={confirmBtnRef} onClick={handleSubmit}>
                         Confirm
                     </a>
-                    <a className="event-dialog-cancel dialog-btn" onClick={() => { eventModalRef.current?.close() }}>
+                    <a className="event-dialog-cancel dialog-btn" onClick={handleCloseModal}>
                         Cancel
                     </a>
                 </div>
             </div>
-        </dialog>
+        </dialog >
     )
 }

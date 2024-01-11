@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react'
 import './CreateEventModal.css'
 import { EventError } from '../../types/ErrorTypes'
@@ -44,8 +45,10 @@ export default function CreateEventModal({ eventModalRef
         }
         else if (new Date(event.endDate) < new Date(event.startDate)) {
             ev.endDateErr = "End date must be greater than start date"
+
             hasError = true;
         }
+
 
 
         if (event.startDate.trim().length === 0) {
@@ -81,9 +84,11 @@ export default function CreateEventModal({ eventModalRef
 
         document.body.addEventListener("keyup", handleClick);
 
+
         return function () {
             document.body.removeEventListener("keyup", handleClick);
         }
+
     })
 
 
@@ -133,6 +138,7 @@ export default function CreateEventModal({ eventModalRef
                     </div>
                 </div>
                 <div className="event-dialog-footer">
+
                     <a className="event-dialog-confirm dialog-btn" ref={confirmBtnRef} onClick={handleSubmit}>
                         Confirm
                     </a>
@@ -141,6 +147,8 @@ export default function CreateEventModal({ eventModalRef
                     </a>
                 </div>
             </div>
+
         </dialog >
+
     )
 }
